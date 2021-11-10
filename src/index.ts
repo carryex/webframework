@@ -1,9 +1,20 @@
-import { User } from "./models/User";
+import { User } from './models/User';
 
 console.log('Hi there');
 
-const user = new User({});
-console.log(`User name: ${user.get('name')} and age: ${user.get('age')}`)
+const user = new User({ name: 'Daniil', age: 30 });
 
-user.set({name: "Dan"});
-console.log(`User name: ${user.get('name')} and age: ${user.get('age')}`)
+user.on('chnage', () => {
+  console.log('Change #1');
+});
+user.on('chnage', () => {
+  console.log('Change #3');
+});
+user.on('chnage', () => {
+  console.log('Change #2');
+});
+user.on('save', () => {
+  console.log('Save was triggered');
+});
+
+user.trigger('asdf');
