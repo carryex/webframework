@@ -1,12 +1,15 @@
+import { Eventing } from './Eventing';
+import { Sync } from './Sync';
+
 interface UserProps {
+  id?: number;
   name?: string;
   age?: number;
 }
-
-type Callback = () => void;
-
+const rootUrl = 'http://localhost:3000/users';
 class User {
-  events: { [key: string]: Callback[] } = {};
+  events: Eventing = new Eventing();
+  sync: Sync<UserProps> = new Sync<UserProps>(rootUrl);
 
   constructor(private data: UserProps) {}
 
@@ -15,27 +18,6 @@ class User {
   set = (update: UserProps): void => {
     Object.assign(this.data, update);
   };
-
-  on = (eventName: string, callback: Callback): void => {
-    const handlers = this.events[eventName] || [];
-    handlers.push(callback);
-    this.events[eventName] = handlers;
-  };
-
-  trigger = (eventName: string): void => {
-    const handlers = this.events[eventName];
-    if (!handlers || handlers.length === 0) {
-      return;
-    }
-
-    handlers.forEach((callback) => {
-      callback();
-    });
-  };
-
-  fetch = () => {};
-
-  save = () => {};
 }
 
 export { User };
