@@ -1,5 +1,3 @@
 import { User } from './models/User';
 
-const user = new User({});
-
-user.sync.save({ name: 'Daniil', age: 30 });
+const user = new User({ name: 'Daniil', age: 30 });
