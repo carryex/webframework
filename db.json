@@ -2,8 +2,28 @@
   "users": [
     {
       "id": 1,
-      "name": "Buba",
-      "age": 999
+      "name": "Daniil",
+      "age": 30
+    },
+    {
+      "id": 2,
+      "name": "Michael",
+      "age": 30
+    },
+    {
+      "id": 4,
+      "name": "Nadezda",
+      "age": 32
+    },
+    {
+      "id": 5,
+      "name": "Duzan",
+      "age": 44
+    },
+    {
+      "id": 7,
+      "name": "Popa",
+      "age": 12
     }
   ]
 }
