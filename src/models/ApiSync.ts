@@ -3,7 +3,7 @@ import axios, { AxiosPromise, AxiosResponse } from 'axios';
 interface HasId {
   id?: number;
 }
-class Sync<T extends HasId> {
+class ApiSync<T extends HasId> {
   constructor(public rootUrl: string) {}
   fetch = (id: number): AxiosPromise<T> => axios.get(`${this.rootUrl}/${id}`);
 
@@ -13,4 +13,4 @@ class Sync<T extends HasId> {
       : axios.post(this.rootUrl, data);
 }
 
-export { Sync };
+export { ApiSync };
