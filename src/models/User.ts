@@ -23,6 +23,7 @@ class User extends Model<UserProps> {
     new Collection<User, UserProps>(rootUrl, User.buildUser);
 
   isAdminUser = (): boolean => this.get('id') === 1;
+  setRandomAge = (): void => this.set({ age: Math.round(Math.random() * 50) });
 }
 
 export { User, UserProps };
