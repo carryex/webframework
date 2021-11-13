@@ -4,8 +4,12 @@ import { View } from './View';
 class UserForm extends View<User, UserProps> {
   eventsMap = (): { [key: string]: () => void } => ({
     'click:#set-age': this.onSetAgeClick,
-    'click:#set-name': this.onSetNameClick
+    'click:#set-name': this.onSetNameClick,
+    'click:#save-model': this.onSaveClick
   });
+
+  onSaveClick = this.model.save;
+  onSetAgeClick = this.model.setRandomAge;
 
   onSetNameClick = (): void => {
     const input = this.parent.querySelector('input');
@@ -14,16 +18,13 @@ class UserForm extends View<User, UserProps> {
       this.model.set({ name });
     }
   };
-  onSetAgeClick = this.model.setRandomAge;
 
   template = (): string => `
     <div>
-      <h1>UserForm</h1>
-      <div>User name: ${this.model.get('name')}</div>
-      <div>User age: ${this.model.get('age')}</div>
-      <input />
+      <input placeholder="${this.model.get('name')}"/>
       <button id="set-name">Change Name</button>
-      <button id="set-age">Set Random Age </button>
+      <button id="set-age">Set Random Age</button>
+      <button id="save-model">Save User</button>
     </div>
   `;
 }
